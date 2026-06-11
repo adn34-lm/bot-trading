@@ -1,9 +1,10 @@
 import time
 import ccxt
+import os
 from datetime import datetime, timezone
 
 # ============================================================
-#   CONFIGURACION — pon aqui tus keys de Binance
+#   CONFIGURACION — las keys se leen de variables de entorno
 # ============================================================
 exchange = ccxt.binance({
     'apiKey': os.environ.get('BINANCE_API_KEY'),
@@ -26,10 +27,6 @@ LOG_FILE = "operaciones.txt"
 print("BOT INTELIGENTE ACTIVADO: " + SIMBOLO)
 print("Take Profit: +3% | Stop Loss: -2%")
 print("Riesgo por operacion: 80% del saldo")
-
-# ============================================================
-#   FUNCIONES DE INDICADORES
-# ============================================================
 
 def calcular_ema(precios, periodo):
     k = 2 / (periodo + 1)
