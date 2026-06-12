@@ -4,7 +4,7 @@ import os
 from datetime import datetime, timezone
 
 # ============================================================
-#   CONFIGURACION — las keys se leen de variables de entorno
+#                            las keys 
 # ============================================================
 exchange = ccxt.binance({
     'apiKey': os.environ.get('BINANCE_API_KEY'),
