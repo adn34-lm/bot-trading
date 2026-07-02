@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAMA — Personal Shopper</title>
+    <meta property="og:title" content="JAMA - Personal Shopper">
+    <meta property="og:description" content="Compramos en USA y enviamos directo a Venezuela.">
+    <meta property="og:image" content="./img/perfil/perfil_de_jama.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="./img/perfil/perfil_de_jama-removebg-preview.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>setTimeout(()=>document.getElementById('loader')?.classList.add('hidden'),3000);</script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<div id="grain"></div>
+<div id="scrollProgress"></div>
+
+<div id="loader">
+    <div class="loader-ring"></div>
+</div>
+
+<canvas id="bgCanvas"></canvas>
+
+<nav id="navbar" class="reveal">
+    <a href="#hero" class="nav-logo">JAMA</a>
+    <div class="nav-center">
+        <a href="#how" class="nav-link">Proceso</a>
+        <a href="#products" class="nav-link">Productos</a>
+        <a href="#testimonials" class="nav-link">Clientes</a>
+        <a href="#cta" class="nav-cta-link" data-magnetic><span>Contactar</span></a>
+    </div>
+    <a href="#cta" class="nav-cta desktop-cta" data-magnetic><span>Contactar</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<section id="hero">
+    <div class="hero-inner">
+        <div class="hero-badge reveal reveal-delay-1">USA → Venezuela</div>
+        <h1 class="hero-title reveal reveal-delay-2">
+            <span class="hero-title-line">Compro en USA</span>
+            <span class="hero-title-line accent">y lo envío a tu casa</span>
+        </h1>
+        <p class="hero-sub reveal reveal-delay-3">Electrónica, ropa, zapatos, suplementos, repuestos de carro y más. Yo me encargo de todo el proceso.</p>
+        <div class="hero-actions reveal reveal-delay-4">
+            <a href="https://www.amazon.com/shop/johecompra" target="_blank" class="btn-primary" data-magnetic>Ver Tienda</a>
+            <a href="#how" class="btn-text">Cómo funciona &rarr;</a>
+        </div>
+        <div class="hero-metrics reveal reveal-delay-5">
+            <div class="hero-metric"><strong><span class="countup" data-target="500">0</span><span class="suffix">+</span></strong> Envíos</div>
+            <div class="hero-metric"><strong><span class="countup" data-target="300">0</span><span class="suffix">+</span></strong> Clientes</div>
+            <div class="hero-metric"><strong><span class="countup" data-target="98">0</span><span class="suffix">%</span></strong> Satisfacción</div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <svg width="12" height="20" viewBox="0 0 12 20"><rect x="1" y="1" width="10" height="18" rx="5" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="6" cy="6" r="1.5" fill="currentColor" class="scroll-dot"/></svg>
+    </div>
+</section>
+
+<section id="how">
+    <div class="section-header">
+        <span class="section-tag">Cómo funciona</span>
+        <h2 class="section-title">De USA a Venezuela <em>en 3 pasos</em></h2>
+        <p class="section-desc">Así de simple es recibir tus productos favoritos desde Estados Unidos directo a tu puerta en Venezuela.</p>
+    </div>
+    <div class="how-grid">
+        <div class="how-visual reveal-left">
+            <canvas id="mapCanvas"></canvas>
+            <div class="map-plane" id="mapPlane">
+                <svg width="44" height="44" viewBox="0 0 44 44">
+                    <g transform="translate(22,22) rotate(-45)">
+                        <path d="M4 20L16 16L20 4L24 16L36 20L24 24L20 36L16 24L4 20Z" fill="#C4957A"/>
+                        <path d="M8 20L16 17L20 8L24 17L32 20L24 23L20 32L16 23L8 20Z" fill="rgba(196,149,122,0.3)"/>
+                        <path d="M4 20L16 16L20 4L24 16L36 20" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="map-dot usa-dot"></div>
+            <div class="map-dot ve-dot"></div>
+            <div class="map-label map-label-usa">USA</div>
+            <div class="map-label map-label-ve">Venezuela</div>
+        </div>
+        <div class="how-cards">
+            <div class="how-card">
+                <div class="how-card-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </div>
+                <div>
+                    <h3>Me dices qué quieres</h3>
+                    <p>Envíame el link o foto de lo que necesitas y te cotizo al instante.</p>
+                </div>
+                <span class="how-step-badge">01</span>
+            </div>
+            <div class="how-card">
+                <div class="how-card-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+                <div>
+                    <h3>Lo compro en USA</h3>
+                    <p>Adquiero tu producto, te envío fotos de verificación y lo preparo.</p>
+                </div>
+                <span class="how-step-badge">02</span>
+            </div>
+            <div class="how-card">
+                <div class="how-card-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <div>
+                    <h3>Lo recibes en Venezuela</h3>
+                    <p>Te comparto el tracking y recibes tu pedido directo en tu casa.</p>
+                </div>
+                <span class="how-step-badge">03</span>
+            </div>
+        </div>
+    </div>
+    <div class="how-video-row">
+        <div class="how-video-col reveal-left">
+            <video src="img/videofondo/WhatsApp%20Video%202026-06-29%20at%2012.04.32%20PM.mp4" autoplay muted loop playsinline preload="auto" disablePictureInPicture></video>
+        </div>
+        <div class="how-desc-col reveal-right">
+            <span class="section-tag">Resultados reales</span>
+            <h3 class="how-desc-title">Cajas enviadas <em>a Venezuela</em></h3>
+            <p class="how-desc-text">Cada caja representa un cliente satisfecho. Electrónica, ropa, zapatos, suplementos y más — todo llega directo a tu puerta con tracking incluido.</p>
+            <div class="how-desc-stats">
+                <div class="how-desc-stat">
+                    <strong>500+</strong>
+                    <span>Envíos exitosos</span>
+                </div>
+                <div class="how-desc-stat">
+                    <strong>98%</strong>
+                    <span>Clientes satisfechos</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="how-shipping">
+        <div class="shipping-card">
+            <span class="shipping-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l9 4.5v9L12 22l-9-4.5v-9L12 2z"/><path d="M12 2v20"/><path d="M3 6.5l9 4.5"/><path d="M21 6.5l-9 4.5"/></svg>
+            </span>
+            <h3>Envío Aéreo</h3>
+            <p class="shipping-time">5 a 7 días</p>
+            <p class="shipping-desc">Llega directo a tu casa. Ideal para electrónica, ropa y pedidos urgentes.</p>
+        </div>
+        <div class="shipping-card">
+            <span class="shipping-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 15h18v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4z"/><path d="M3 11V5a2 2 0 012-2h14a2 2 0 012 2v6"/><path d="M3 11h18"/><path d="M7 15v2"/><path d="M17 15v2"/></svg>
+            </span>
+            <h3>Envío Marítimo</h3>
+            <p class="shipping-time">21 a 30 días</p>
+            <p class="shipping-desc">Perfecto para cargas grandes, repuestos de carro y muebles. Más económico.</p>
+        </div>
+        <div class="shipping-card">
+            <span class="shipping-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.32 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            </span>
+            <h3>Precio por peso</h3>
+            <p class="shipping-time">Cotización personalizada</p>
+            <p class="shipping-desc">El precio final se calcula según el peso del paquete. Escribime y te cotizo al instante.</p>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="products">
+    <div class="section-header">
+        <span class="section-tag">Productos</span>
+        <h2 class="section-title">¿Qué puedo comprar?</h2>
+        <p class="section-desc">Prácticamente cualquier cosa que se venda en USA. Estas son las categorías más populares:</p>
+    </div>
+    <div class="products-grid" id="productsGrid">
+        <div class="product-card product-card-lg" data-tilt>
+            <span class="product-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/></svg>
+            </span>
+            <span>Electrónica</span>
+        </div>
+        <div class="product-card" data-tilt>
+            <span class="product-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </span>
+            <span>Ropa y Zapatos</span>
+        </div>
+        <div class="product-card" data-tilt>
+            <span class="product-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 017-7h4a7 7 0 017 7v2"/></svg>
+            </span>
+            <span>Belleza</span>
+        </div>
+        <div class="product-card" data-tilt>
+            <span class="product-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+            </span>
+            <span>Suplementos</span>
+        </div>
+        <div class="product-card" data-tilt>
+            <span class="product-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </span>
+            <span>Juguetes</span>
+        </div>
+        <div class="product-card product-card-lg" data-tilt>
+            <span class="product-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17H3v-4l3-5h10l3 5v4h-2"/></svg>
+            </span>
+            <span>Auto Partes</span>
+        </div>
+        <div class="product-card" data-tilt>
+            <span class="product-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+            </span>
+            <span>Hogar</span>
+        </div>
+        <div class="product-card" data-tilt>
+            <span class="product-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+            </span>
+            <span>Deportes</span>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="testimonials">
+    <div class="section-header">
+        <span class="section-tag">Testimonios</span>
+        <h2 class="section-title">Lo que dicen <em>mis clientes</em></h2>
+    </div>
+    <div class="testimonials-track">
+        <div class="testimonial-card">
+            <div class="testimonial-stars">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <blockquote>"Me compró un iPhone 16 y llegó en 8 días directo a Caracas. 100% confiable."</blockquote>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar" style="background:#C4957A">D</div>
+                <div>
+                    <span class="testimonial-name">Daniela S.</span>
+                    <span class="testimonial-role">Caracas, Venezuela</span>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card featured">
+            <div class="testimonial-stars">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <blockquote>"Siempre compro mis suplementos con JAMA. Nunca he tenido problemas con los envíos."</blockquote>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar" style="background:#B58468">R</div>
+                <div>
+                    <span class="testimonial-name">Ricardo P.</span>
+                    <span class="testimonial-role">Valencia, Venezuela</span>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-stars">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#C4957A" stroke="#C4957A"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <blockquote>"La consolidación me ahorró un montón en envíos. Súper recomendado el servicio."</blockquote>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar" style="background:#A08060">G</div>
+                <div>
+                    <span class="testimonial-name">Génesis C.</span>
+                    <span class="testimonial-role">Maracaibo, Venezuela</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="cta">
+    <div class="cta-inner">
+        <div class="cta-content">
+            <span class="section-tag">Contacto</span>
+            <h2 class="section-title">¿Listo para <em>comprar</em>?</h2>
+            <p class="section-desc">Escríbeme directo y te respondo en menos de 30 minutos.</p>
+            <div class="cta-socials">
+                <a href="https://www.instagram.com/johelysramirez" target="_blank" class="btn-primary btn-social" data-magnetic>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="17" cy="7" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="5"/></svg>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.tiktok.com/@johelysramirez26" target="_blank" class="btn-outline btn-social" data-magnetic>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8c0-2 1-4 3-5v3h-3z"/><circle cx="10" cy="16" r="5"/></svg>
+                    <span>TikTok</span>
+                </a>
+                <a href="https://www.amazon.com/shop/johecompra" target="_blank" class="btn-outline btn-social" data-magnetic>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                    <span>Amazon Shop</span>
+                </a>
+            </div>
+        </div>
+        <div class="cta-visual reveal-scale">
+            <div class="cta-ring"></div>
+        </div>
+    </div>
+</section>
+
+<div id="progressRing">
+    <svg width="44" height="44" viewBox="0 0 44 44">
+        <circle cx="22" cy="22" r="19" fill="none" stroke="rgba(196,149,122,0.15)" stroke-width="2"/>
+        <circle id="progressArc" cx="22" cy="22" r="19" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-dasharray="119.38" stroke-dashoffset="119.38" transform="rotate(-90 22 22)"/>
+    </svg>
+    <span>&uarr;</span>
+</div>
+
+
+<div id="footerCurtain">
+    <footer id="cinematicFooter">
+        <div class="footer-aurora"></div>
+        <div class="footer-grid"></div>
+
+        <div class="footer-giant">JAMA</div>
+
+        <div class="footer-marquee">
+            <div class="marquee-track">
+                <span>Personal Shopper USA → Venezuela</span>
+                <span class="sep">✦</span>
+                <span>Compro y envío a tu casa</span>
+                <span class="sep">✦</span>
+                <span>Electrónica · Ropa · Suplementos · Repuestos</span>
+                <span class="sep">✦</span>
+                <span>500+ envíos exitosos</span>
+                <span class="sep">✦</span>
+                <span>Personal Shopper USA → Venezuela</span>
+                <span class="sep">✦</span>
+                <span>Compro y envío a tu casa</span>
+                <span class="sep">✦</span>
+                <span>Electrónica · Ropa · Suplementos · Repuestos</span>
+                <span class="sep">✦</span>
+                <span>500+ envíos exitosos</span>
+                <span class="sep">✦</span>
+            </div>
+        </div>
+
+        <div class="footer-center">
+            <h2 class="footer-heading">¿Listo para <em>comprar</em>?</h2>
+            <div class="footer-pills">
+                <a href="https://www.instagram.com/johelysramirez" target="_blank" class="glass-pill" data-magnetic>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="17" cy="7" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="5"/></svg>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.amazon.com/shop/johecompra" target="_blank" class="glass-pill" data-magnetic>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                    <span>Amazon Shop</span>
+                </a>
+            </div>
+            <div class="footer-sub-links">
+                <a href="https://www.tiktok.com/@johelysramirez26" target="_blank" class="glass-pill sm">TikTok</a>
+                <a href="javascript:void(0)" class="glass-pill sm" data-modal="terminos">Términos</a>
+                <a href="javascript:void(0)" class="glass-pill sm" data-modal="privacidad">Privacidad</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2025 JAMA Services</span>
+            <div class="footer-heart">
+                <span>Hecho con</span>
+                <span class="heart-icon">❤</span>
+                <span>en Venezuela</span>
+            </div>
+            <button id="footerTop" class="glass-pill sm icon" aria-label="Volver arriba">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+            </button>
+        </div>
+    </footer>
+</div>
+
+<div id="modalOverlay">
+    <div id="modalContent">
+        <button id="modalClose">&times;</button>
+        <div id="modalBody"></div>
+    </div>
+</div>
+<script>var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();Tawk_API.customStyle={zIndex:200};(function(){var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];s1.async=true;s1.src='https://embed.tawk.to/6a46b216539b7e1d4b7d326e/default';s1.charset='UTF-8';s1.setAttribute('crossorigin','*');s0.parentNode.insertBefore(s1,s0);})();</script>
+<script src="https://cdn.jsdelivr.net/npm/motion@11/dist/motion.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+</body>
+</html>
